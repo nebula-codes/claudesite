@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Ocean Mysteries - The Explorer's Hub</title>
+    <link rel="stylesheet" href="../shared/main.css">
+    <link rel="stylesheet" href="ocean.css">
+</head>
+<body>
+    <a href="../index.html" class="back-to-hub">← Back to Hub</a>
+
+    <div class="ocean-container">
+        <!-- Depth Indicator -->
+        <div class="depth-indicator">
+            <div class="depth-meter">
+                <div class="depth-marker" id="depth-marker"></div>
+            </div>
+            <div class="depth-display">
+                <span id="depth-value">0</span>m
+            </div>
+            <div class="pressure-display">
+                <span id="pressure-value">1</span> atm
+            </div>
+        </div>
+
+        <!-- Zones -->
+        <section class="zone sunlight-zone" data-depth="0" data-name="Sunlight Zone">
+            <div class="zone-content">
+                <h1 class="zone-title">Sunlight Zone</h1>
+                <p class="zone-depth">0 - 200 meters</p>
+                <p class="zone-description">
+                    The brightest part of the ocean, where photosynthesis occurs.
+                    Warm, filled with life, and the only zone where plants can grow.
+                </p>
+                <div class="creatures">
+                    <div class="creature-card">
+                        <h3>Dolphin</h3>
+                        <p>Intelligent marine mammals that use echolocation to navigate and hunt.</p>
+                    </div>
+                    <div class="creature-card">
+                        <h3>Sea Turtle</h3>
+                        <p>Ancient reptiles that have roamed oceans for over 100 million years.</p>
+                    </div>
+                    <div class="creature-card">
+                        <h3>Jellyfish</h3>
+                        <p>Gelatinous creatures that have existed for 500 million years, predating dinosaurs.</p>
+                    </div>
+                </div>
+                <div class="scroll-hint">↓ Scroll to descend deeper ↓</div>
+            </div>
+        </section>
+
+        <section class="zone twilight-zone" data-depth="200" data-name="Twilight Zone">
+            <div class="zone-content">
+                <h1 class="zone-title">Twilight Zone</h1>
+                <p class="zone-depth">200 - 1,000 meters</p>
+                <p class="zone-description">
+                    Dim light barely penetrates here. The largest animal migration on Earth
+                    occurs daily as creatures rise to feed at night and descend during the day.
+                </p>
+                <div class="creatures">
+                    <div class="creature-card glow">
+                        <h3>Hatchetfish</h3>
+                        <p>Thin, silvery fish with bioluminescent organs on their bellies to match downwelling light.</p>
+                    </div>
+                    <div class="creature-card glow">
+                        <h3>Lanternfish</h3>
+                        <p>The most abundant vertebrate on Earth. Their bioluminescence creates "false moonlight".</p>
+                    </div>
+                    <div class="creature-card glow">
+                        <h3>Swordfish</h3>
+                        <p>Powerful predators with special organs that heat their eyes and brain for better hunting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="zone midnight-zone" data-depth="1000" data-name="Midnight Zone">
+            <div class="zone-content">
+                <h1 class="zone-title">Midnight Zone</h1>
+                <p class="zone-depth">1,000 - 4,000 meters</p>
+                <p class="zone-description">
+                    Complete darkness. Temperatures near freezing. Bioluminescence is the only light.
+                    Creatures here have bizarre adaptations to survive in this alien world.
+                </p>
+                <div class="creatures">
+                    <div class="creature-card glow">
+                        <h3>Anglerfish</h3>
+                        <p>Females have a bioluminescent lure dangling from their heads. Males are tiny parasites that fuse to females.</p>
+                    </div>
+                    <div class="creature-card glow">
+                        <h3>Giant Squid</h3>
+                        <p>Legends of the Kraken. Eyes the size of dinner plates. Can grow up to 43 feet long.</p>
+                    </div>
+                    <div class="creature-card glow">
+                        <h3>Vampire Squid</h3>
+                        <p>Not actually a squid. Has bioluminescent organs and can turn itself "inside out" when threatened.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="zone abyssal-zone" data-depth="4000" data-name="Abyssal Zone">
+            <div class="zone-content">
+                <h1 class="zone-title">Abyssal Zone</h1>
+                <p class="zone-depth">4,000 - 6,000 meters</p>
+                <p class="zone-description">
+                    The abyss. Crushing pressure of 400 atmospheres. No light has ever reached here.
+                    Life moves slowly, conserving energy in this food-scarce environment.
+                </p>
+                <div class="creatures">
+                    <div class="creature-card glow">
+                        <h3>Gulper Eel</h3>
+                        <p>A mouth bigger than its body. Can swallow prey larger than itself. Glows pink when disturbed.</p>
+                    </div>
+                    <div class="creature-card glow">
+                        <h3>Tripod Fish</h3>
+                        <p>Stands on three elongated fins on the seafloor, facing into current to catch drifting food.</p>
+                    </div>
+                    <div class="creature-card glow">
+                        <h3>Sea Pig</h3>
+                        <p>A type of sea cucumber. Walks on leg-like tube feet, filtering nutrients from mud.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="zone hadal-zone" data-depth="6000" data-name="Hadal Zone">
+            <div class="zone-content">
+                <h1 class="zone-title">Hadal Zone</h1>
+                <p class="zone-depth">6,000 - 11,000 meters</p>
+                <p class="zone-description">
+                    Named after Hades, the Greek underworld. The deepest trenches on Earth.
+                    Pressure exceeds 1,000 atmospheres. More people have been to the Moon than here.
+                </p>
+                <div class="creatures">
+                    <div class="creature-card glow">
+                        <h3>Mariana Snailfish</h3>
+                        <p>Deepest living fish ever recorded at 8,178 meters. Translucent with no scales.</p>
+                    </div>
+                    <div class="creature-card glow">
+                        <h3>Amphipods</h3>
+                        <p>Shrimp-like creatures. Some species in the Mariana Trench grow to enormous sizes.</p>
+                    </div>
+                    <div class="creature-card glow">
+                        <h3>Xenophyophores</h3>
+                        <p>Giant single-celled organisms. The largest living cells on Earth, up to 20cm across.</p>
+                    </div>
+                </div>
+
+                <div class="trench-info">
+                    <h2>The Mariana Trench</h2>
+                    <p>The deepest point on Earth: <strong>10,994 meters</strong> (36,070 feet)</p>
+                    <p>If Mount Everest were placed in the trench, its peak would still be over 2km underwater.</p>
+                    <p>First reached by humans in 1960 (Jacques Piccard and Don Walsh in the Trieste).</p>
+                    <p>Only four dives to the bottom have ever been made.</p>
+                </div>
+
+                <div class="mystery-sounds">
+                    <h2>Mysterious Ocean Sounds</h2>
+                    <div class="sound-item">
+                        <h3>The Bloop (1997)</h3>
+                        <p>An ultra-low frequency sound detected by underwater microphones. Loud enough to be heard 5,000km away.
+                        Initially thought to be from an unknown massive creature, later identified as likely from icequakes.</p>
+                    </div>
+                    <div class="sound-item">
+                        <h3>Julia (1999)</h3>
+                        <p>A sound that lasted 15 seconds, resembling whale songs but far too loud. Origin still debated.</p>
+                    </div>
+                    <div class="sound-item">
+                        <h3>The Upsweep</h3>
+                        <p>A continuous sound detected since 1991. Seasonal variations suggest volcanic or seismic activity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Floating particles -->
+    <canvas id="particles"></canvas>
+
+    <script src="ocean.js"></script>
+</body>
+</html>

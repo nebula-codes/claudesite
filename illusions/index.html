@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optical Illusions Lab - The Explorer's Hub</title>
+    <link rel="stylesheet" href="../shared/main.css">
+    <link rel="stylesheet" href="illusions.css">
+</head>
+<body>
+    <a href="../index.html" class="back-to-hub">← Back to Hub</a>
+
+    <div class="lab-container">
+        <!-- Header -->
+        <header class="lab-header">
+            <h1>Optical Illusions Lab</h1>
+            <p class="tagline">Your Brain is Lying to You</p>
+            <p class="description">
+                Explore the fascinating ways your brain interprets (and misinterprets) visual information.
+                Each illusion reveals something profound about human perception.
+            </p>
+        </header>
+
+        <!-- Illusion Gallery -->
+        <div class="illusions-grid">
+
+            <!-- Hermann Grid -->
+            <div class="illusion-card">
+                <div class="illusion-header">
+                    <h2>Hermann Grid Illusion</h2>
+                    <button class="toggle-btn" data-illusion="hermann">Toggle Illusion</button>
+                </div>
+                <div class="illusion-display" id="hermann-illusion">
+                    <svg width="400" height="400" viewBox="0 0 400 400">
+                        <rect width="400" height="400" fill="white"/>
+                        <!-- Create grid of black squares -->
+                        <g id="hermann-grid"></g>
+                    </svg>
+                </div>
+                <div class="illusion-info">
+                    <h3>What You See:</h3>
+                    <p>Gray dots appear at the intersections of the white lines, but they vanish when you look directly at them.</p>
+                    <h3>Why It Happens:</h3>
+                    <p>Lateral inhibition in your retina. Cells that detect brightness inhibit neighboring cells.
+                    At intersections, the inhibition is stronger from all sides, creating the phantom dark spots.</p>
+                </div>
+            </div>
+
+            <!-- Rotating Snakes -->
+            <div class="illusion-card">
+                <div class="illusion-header">
+                    <h2>Rotating Snakes</h2>
+                    <button class="toggle-btn" data-illusion="snakes">Toggle Motion</button>
+                </div>
+                <div class="illusion-display" id="snakes-illusion">
+                    <svg width="400" height="400" viewBox="0 0 400 400">
+                        <rect width="400" height="400" fill="#888"/>
+                        <g id="snakes-pattern"></g>
+                    </svg>
+                </div>
+                <div class="illusion-info">
+                    <h3>What You See:</h3>
+                    <p>The circles appear to rotate even though this is a completely static image. The effect is stronger in peripheral vision.</p>
+                    <h3>Why It Happens:</h3>
+                    <p>Microsaccades (tiny eye movements) combined with the specific sequence of light-to-dark transitions
+                    trick your motion detection neurons into firing.</p>
+                </div>
+            </div>
+
+            <!-- Checker Shadow -->
+            <div class="illusion-card">
+                <div class="illusion-header">
+                    <h2>Checker Shadow Illusion</h2>
+                    <button class="toggle-btn" data-illusion="checker">Reveal Truth</button>
+                </div>
+                <div class="illusion-display" id="checker-illusion">
+                    <canvas id="checker-canvas" width="400" height="400"></canvas>
+                </div>
+                <div class="illusion-info">
+                    <h3>What You See:</h3>
+                    <p>Squares A and B appear to be different shades - one light, one dark.</p>
+                    <h3>The Truth:</h3>
+                    <p>They are EXACTLY the same color! Click "Reveal Truth" to see the proof.</p>
+                    <h3>Why It Happens:</h3>
+                    <p>Your brain adjusts for lighting and shadows. It "knows" B is in shadow, so it interprets
+                    it as a lighter color than it actually is. Context matters more than raw data.</p>
+                </div>
+            </div>
+
+            <!-- Café Wall -->
+            <div class="illusion-card">
+                <div class="illusion-header">
+                    <h2>Café Wall Illusion</h2>
+                    <button class="toggle-btn" data-illusion="cafe">Show Grid Lines</button>
+                </div>
+                <div class="illusion-display" id="cafe-illusion">
+                    <canvas id="cafe-canvas" width="400" height="400"></canvas>
+                </div>
+                <div class="illusion-info">
+                    <h3>What You See:</h3>
+                    <p>The horizontal lines appear to be slanted or curved.</p>
+                    <h3>The Truth:</h3>
+                    <p>All horizontal lines are perfectly parallel! The offset black and white tiles create the illusion.</p>
+                    <h3>Why It Happens:</h3>
+                    <p>The contrast between black and white tiles at different offsets confuses edge-detection neurons,
+                    creating false perception of tilt.</p>
+                </div>
+            </div>
+
+            <!-- Ebbinghaus Illusion -->
+            <div class="illusion-card">
+                <div class="illusion-header">
+                    <h2>Ebbinghaus Illusion</h2>
+                    <button class="toggle-btn" data-illusion="ebbinghaus">Isolate Circles</button>
+                </div>
+                <div class="illusion-display" id="ebbinghaus-illusion">
+                    <svg width="400" height="200" viewBox="0 0 400 200">
+                        <rect width="400" height="200" fill="#f5f5f5"/>
+                        <g id="ebbinghaus-pattern"></g>
+                    </svg>
+                </div>
+                <div class="illusion-info">
+                    <h3>What You See:</h3>
+                    <p>The orange circle on the left appears larger than the one on the right.</p>
+                    <h3>The Truth:</h3>
+                    <p>Both orange circles are EXACTLY the same size!</p>
+                    <h3>Why It Happens:</h3>
+                    <p>Relative size perception. Your brain compares each circle to its surroundings.
+                    Surrounded by large circles, it looks small. Surrounded by small circles, it looks large.</p>
+                </div>
+            </div>
+
+            <!-- Motion Aftereffect (Waterfall Illusion) -->
+            <div class="illusion-card">
+                <div class="illusion-header">
+                    <h2>Motion Aftereffect</h2>
+                    <button class="toggle-btn" data-illusion="waterfall">Start/Stop</button>
+                </div>
+                <div class="illusion-display" id="waterfall-illusion">
+                    <canvas id="waterfall-canvas" width="400" height="400"></canvas>
+                </div>
+                <div class="illusion-info">
+                    <h3>How to Experience It:</h3>
+                    <p><strong>1)</strong> Click "Start" and stare at the CENTER of the spiral for 30 seconds.<br>
+                    <strong>2)</strong> Don't look away! Keep your eyes fixed on the center.<br>
+                    <strong>3)</strong> After 30 seconds, look at something still (like text on this page).</p>
+                    <h3>What You'll See:</h3>
+                    <p>The text or still objects will appear to move in the opposite direction!</p>
+                    <h3>Why It Happens:</h3>
+                    <p>Motion-detecting neurons become fatigued from continuous stimulation. When you look away,
+                    neurons detecting opposite motion are relatively more active, creating phantom motion.</p>
+                </div>
+            </div>
+
+            <!-- Penrose Triangle -->
+            <div class="illusion-card">
+                <div class="illusion-header">
+                    <h2>Impossible Triangle</h2>
+                    <button class="toggle-btn" data-illusion="penrose">Rotate 3D</button>
+                </div>
+                <div class="illusion-display" id="penrose-illusion">
+                    <svg width="400" height="400" viewBox="0 0 400 400">
+                        <rect width="400" height="400" fill="white"/>
+                        <g id="penrose-pattern" transform="translate(200, 200)"></g>
+                    </svg>
+                </div>
+                <div class="illusion-info">
+                    <h3>What You See:</h3>
+                    <p>A three-dimensional triangle that seems to exist... but can't.</p>
+                    <h3>Why It's Impossible:</h3>
+                    <p>Each corner appears locally correct, but the object as a whole cannot exist in 3D space.
+                    It's a 2D drawing that tricks your brain's 3D interpretation systems.</p>
+                    <h3>The Science:</h3>
+                    <p>Your brain makes assumptions about 3D structure from 2D images. This illusion exploits
+                    those assumptions by presenting impossible geometry that seems plausible at first glance.</p>
+                </div>
+            </div>
+
+            <!-- Color Constancy -->
+            <div class="illusion-card">
+                <div class="illusion-header">
+                    <h2>Color Constancy Illusion</h2>
+                    <button class="toggle-btn" data-illusion="color">Remove Context</button>
+                </div>
+                <div class="illusion-display" id="color-illusion">
+                    <canvas id="color-canvas" width="400" height="300"></canvas>
+                </div>
+                <div class="illusion-info">
+                    <h3>What You See:</h3>
+                    <p>The strawberries look red, even though there's no red pixels in the image!</p>
+                    <h3>Why It Happens:</h3>
+                    <p>Color constancy - your brain adjusts colors based on lighting context. It "knows"
+                    strawberries should be red, so it perceives them as red despite the cyan filter.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Science Section -->
+        <section class="science-section">
+            <h2>The Science of Perception</h2>
+            <div class="science-grid">
+                <div class="science-card">
+                    <h3>Your Brain Predicts Reality</h3>
+                    <p>You don't see reality directly. Your brain constructs a model based on expectations,
+                    past experiences, and incomplete sensory data. Illusions reveal where these predictions go wrong.</p>
+                </div>
+                <div class="science-card">
+                    <h3>Processing Shortcuts</h3>
+                    <p>Your visual system processes 10 million bits of information per second. To handle this,
+                    it takes shortcuts and makes assumptions. Most of the time these work perfectly. Illusions exploit the edge cases.</p>
+                </div>
+                <div class="science-card">
+                    <h3>Context is Everything</h3>
+                    <p>Your brain doesn't analyze objects in isolation. Surrounding colors, lighting, motion,
+                    and even your expectations all influence what you perceive.</p>
+                </div>
+                <div class="science-card">
+                    <h3>Adaptation and Fatigue</h3>
+                    <p>Neurons that fire continuously become fatigued. This creates aftereffects like the
+                    motion illusion. It's the same principle behind seeing spots after a camera flash.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="illusions.js"></script>
+</body>
+</html>
