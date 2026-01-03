@@ -9,20 +9,32 @@ const state = {
 
 // Initialize all illusions
 document.addEventListener('DOMContentLoaded', () => {
-    initHermannGrid();
-    initRotatingSnakes();
-    initCheckerShadow();
-    initCafeWall();
-    initEbbinghaus();
-    initWaterfall();
-    initPenrose();
-    initColorConstancy();
-    setupToggleButtons();
+    console.log('🧠 Initializing Optical Illusions Lab...');
+
+    try {
+        initHermannGrid();
+        initRotatingSnakes();
+        initCheckerShadow();
+        initCafeWall();
+        initEbbinghaus();
+        initWaterfall();
+        initPenrose();
+        initColorConstancy();
+        setupToggleButtons();
+        console.log('✅ All illusions loaded successfully!');
+    } catch (error) {
+        console.error('❌ Error loading illusions:', error);
+    }
 });
 
 // Hermann Grid Illusion
 function initHermannGrid() {
     const grid = document.getElementById('hermann-grid');
+    if (!grid) {
+        console.error('hermann-grid element not found');
+        return;
+    }
+
     const squareSize = 60;
     const gap = 15;
     const rows = 5;
@@ -44,6 +56,11 @@ function initHermannGrid() {
 // Rotating Snakes Illusion
 function initRotatingSnakes() {
     const pattern = document.getElementById('snakes-pattern');
+    if (!pattern) {
+        console.error('snakes-pattern element not found');
+        return;
+    }
+
     const colors = ['#000000', '#333333', '#CCCCCC', '#FFFFFF'];
 
     function createCircle(cx, cy, radius) {
@@ -76,6 +93,11 @@ function initRotatingSnakes() {
 // Checker Shadow Illusion
 function initCheckerShadow() {
     const canvas = document.getElementById('checker-canvas');
+    if (!canvas) {
+        console.error('checker-canvas element not found');
+        return;
+    }
+
     const ctx = canvas.getContext('2d');
     const squareSize = 50;
 
@@ -88,11 +110,6 @@ function initCheckerShadow() {
         }
     }
 
-    // Highlight squares A (light) and B (dark under shadow)
-    // A is at position (1, 2) and B is at (4, 4)
-    const aColor = '#666666'; // Actually a dark square
-    const bColor = '#666666'; // Same exact color!
-
     // Draw shadow (simplified)
     ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
     ctx.beginPath();
@@ -104,7 +121,8 @@ function initCheckerShadow() {
     ctx.fill();
 
     // Redraw B square in shadow with same color as A
-    ctx.fillStyle = bColor;
+    const sharedColor = '#666666';
+    ctx.fillStyle = sharedColor;
     ctx.fillRect(4 * squareSize, 4 * squareSize, squareSize, squareSize);
 
     // Label squares
@@ -115,11 +133,17 @@ function initCheckerShadow() {
 
     // Store original state
     canvas.originalImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    canvas.revealed = false;
 }
 
 // Café Wall Illusion
 function initCafeWall() {
     const canvas = document.getElementById('cafe-canvas');
+    if (!canvas) {
+        console.error('cafe-canvas element not found');
+        return;
+    }
+
     const ctx = canvas.getContext('2d');
     const tileWidth = 40;
     const tileHeight = 60;
@@ -128,10 +152,10 @@ function initCafeWall() {
 
     for (let row = 0; row < 6; row++) {
         const xOffset = row % 2 === 0 ? 0 : offset;
+        const y = row * (tileHeight + grayLineHeight);
 
         for (let col = 0; col < 11; col++) {
             const x = col * tileWidth + xOffset;
-            const y = row * (tileHeight + grayLineHeight);
 
             ctx.fillStyle = col % 2 === 0 ? 'black' : 'white';
             ctx.fillRect(x, y, tileWidth, tileHeight);
@@ -148,6 +172,11 @@ function initCafeWall() {
 // Ebbinghaus Illusion
 function initEbbinghaus() {
     const pattern = document.getElementById('ebbinghaus-pattern');
+    if (!pattern) {
+        console.error('ebbinghaus-pattern element not found');
+        return;
+    }
+
     const centerCircleRadius = 25;
     const leftCenterX = 100;
     const rightCenterX = 300;
@@ -208,6 +237,11 @@ function initEbbinghaus() {
 // Waterfall Illusion (Motion Aftereffect)
 function initWaterfall() {
     const canvas = document.getElementById('waterfall-canvas');
+    if (!canvas) {
+        console.error('waterfall-canvas element not found');
+        return;
+    }
+
     const ctx = canvas.getContext('2d');
     let angle = 0;
 
@@ -275,13 +309,10 @@ function initWaterfall() {
 // Penrose Triangle
 function initPenrose() {
     const pattern = document.getElementById('penrose-pattern');
-
-    // Simplified Penrose triangle coordinates
-    const points = [
-        { x: 0, y: -80 },
-        { x: -70, y: 40 },
-        { x: 70, y: 40 }
-    ];
+    if (!pattern) {
+        console.error('penrose-pattern element not found');
+        return;
+    }
 
     // Draw three bars forming impossible triangle
     const bar1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -309,6 +340,11 @@ function initPenrose() {
 // Color Constancy
 function initColorConstancy() {
     const canvas = document.getElementById('color-canvas');
+    if (!canvas) {
+        console.error('color-canvas element not found');
+        return;
+    }
+
     const ctx = canvas.getContext('2d');
 
     // Draw strawberries (simplified)
@@ -347,15 +383,22 @@ function initColorConstancy() {
     ctx.font = '16px sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('These strawberries contain NO red pixels!', canvas.width / 2, 250);
+
+    canvas.revealed = false;
 }
 
 // Toggle button functionality
 function setupToggleButtons() {
     const buttons = document.querySelectorAll('.toggle-btn');
+    console.log(`Found ${buttons.length} toggle buttons`);
 
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const illusion = button.dataset.illusion;
+    buttons.forEach((button, index) => {
+        const illusion = button.dataset.illusion;
+        console.log(`Setting up button ${index + 1}: ${illusion}`);
+
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log(`Button clicked: ${illusion}`);
 
             switch (illusion) {
                 case 'hermann':
@@ -382,6 +425,8 @@ function setupToggleButtons() {
                 case 'color':
                     toggleColor();
                     break;
+                default:
+                    console.warn(`Unknown illusion type: ${illusion}`);
             }
         });
     });
@@ -390,32 +435,47 @@ function setupToggleButtons() {
 // Toggle functions
 function toggleHermann() {
     const grid = document.getElementById('hermann-grid');
-    grid.style.opacity = grid.style.opacity === '0.3' ? '1' : '0.3';
+    if (!grid) return;
+
+    const currentOpacity = grid.style.opacity || '1';
+    grid.style.opacity = currentOpacity === '0.3' ? '1' : '0.3';
+    console.log('Hermann toggled, opacity:', grid.style.opacity);
 }
 
 function toggleSnakes() {
     const pattern = document.getElementById('snakes-pattern');
+    if (!pattern) return;
+
     pattern.classList.toggle('rotate-animation');
+    console.log('Snakes toggled, rotating:', pattern.classList.contains('rotate-animation'));
 }
 
 function toggleChecker() {
     const canvas = document.getElementById('checker-canvas');
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
 
     if (!canvas.revealed) {
         // Draw connecting bar to show same color
         ctx.fillStyle = '#666666';
-        ctx.fillRect(1 * 50 + 10, 2 * 50, 4 * 50 - 10, 3 * 50);
+        ctx.fillRect(50 + 10, 100, 200 - 10, 150);
         canvas.revealed = true;
+        console.log('Checker revealed');
     } else {
         // Reset to original
-        ctx.putImageData(canvas.originalImage, 0, 0);
+        if (canvas.originalImage) {
+            ctx.putImageData(canvas.originalImage, 0, 0);
+        }
         canvas.revealed = false;
+        console.log('Checker reset');
     }
 }
 
 function toggleCafe() {
     const canvas = document.getElementById('cafe-canvas');
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
 
     if (!canvas.hasGridLines) {
@@ -429,34 +489,47 @@ function toggleCafe() {
             ctx.stroke();
         }
         canvas.hasGridLines = true;
+        console.log('Cafe grid lines shown');
     } else {
         // Redraw without lines
         initCafeWall();
+        console.log('Cafe grid lines hidden');
     }
 }
 
 function toggleEbbinghaus() {
     const svg = document.querySelector('#ebbinghaus-illusion svg');
+    if (!svg) return;
+
     const circles = svg.querySelectorAll('circle:not(#left-center):not(#right-center)');
 
     circles.forEach(circle => {
         const currentOpacity = circle.getAttribute('opacity') || '1';
         circle.setAttribute('opacity', currentOpacity === '1' ? '0.1' : '1');
     });
+    console.log('Ebbinghaus toggled');
 }
 
 function toggleWaterfall() {
     const canvas = document.getElementById('waterfall-canvas');
+    if (!canvas || !canvas.animateSpiral) return;
+
     canvas.animateSpiral();
+    console.log('Waterfall toggled, active:', state.waterfallActive);
 }
 
 function togglePenrose() {
     const pattern = document.getElementById('penrose-pattern');
+    if (!pattern) return;
+
     pattern.classList.toggle('rotate-animation');
+    console.log('Penrose toggled, rotating:', pattern.classList.contains('rotate-animation'));
 }
 
 function toggleColor() {
     const canvas = document.getElementById('color-canvas');
+    if (!canvas) return;
+
     const ctx = canvas.getContext('2d');
 
     if (!canvas.revealed) {
@@ -478,10 +551,11 @@ function toggleColor() {
         ctx.fillText('Isolated patch - now you see the real color!', canvas.width / 2, 250);
 
         canvas.revealed = true;
+        console.log('Color revealed');
     } else {
         initColorConstancy();
-        canvas.revealed = false;
+        console.log('Color reset');
     }
 }
 
-console.log('🧠 Optical Illusions Lab loaded. Prepare to have your mind blown!');
+console.log('🧠 Optical Illusions Lab script loaded!');
